@@ -1,4 +1,24 @@
 {
+  "name": "muxtorov98/php-telegram-framework",
+  "description": "⚡ Modular Telegram Bot Framework built with PHP 8.2+, supporting Handlers, Attributes, and Long Polling.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tulqin Muxtorov",
+      "email": "tulqin484@gmail.com",
+      "homepage": "https://github.com/muxtorov98"
+    }
+  ],
+  "keywords": [
+    "telegram",
+    "bot",
+    "php",
+    "framework",
+    "long-polling",
+    "telegram-bot-sdk",
+    "modular"
+  ],
   "require": {
     "php": "^8.2",
     "vlucas/phpdotenv": "^5.6",
