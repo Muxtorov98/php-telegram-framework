@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+require __DIR__ . '/../vendor/autoload.php';
+
+use App\Core\Database;
+use App\Console\ConsoleKernel;
+
+Database::connect();
+
+$argv = $_SERVER['argv'] ?? [];
+$command = $argv[1] ?? null;
+
+$kernel = new ConsoleKernel();
+$kernel->handle($command, array_slice($argv, 2));

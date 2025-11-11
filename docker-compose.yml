@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  telegram-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: telegram-bot-dev
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app               # 🔥 Kodni real-time sinxronlash
+      - ./vendor:/app/vendor # vendor ham tashqarida saqlanadi
+    command: bash -c "composer install --no-interaction && php public/run.php"
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5401:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:

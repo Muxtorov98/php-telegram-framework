@@ -1,0 +1,13 @@
+<?php
+namespace App\Core\Attributes;
+
+use Attribute;
+
+#[Attribute(Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
+class Handler
+{
+    public function __construct(
+        public string $type = 'message',
+        public ?string $query_param = null
+    ) {}
+}
